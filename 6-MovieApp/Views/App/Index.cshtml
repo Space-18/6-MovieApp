@@ -1,0 +1,36 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@model IEnumerable<MovieAppViewModel>
+@{
+    ViewBag.Title = "Home Page";
+}
+<table class="table">
+    <thead>
+        <tr>
+            <th>Id</th>
+
+            <th>Nombre</th>
+
+            <th>Genero</th>
+            
+            <th><a asp-controller="App" asp-action="AddOrEdit" class="btn btn-primary">Agregar</a></th>
+        </tr>
+    </thead>
+    @foreach (var item in Model)
+    {
+<tr>
+    <!--estoy poniendo el item en la pagina 
+        para verificar que se genere un codigo, 
+        no considero correcto exponer el identificador-->
+    <td>@item.Identi.ToString()</td>
+
+
+    <td>@item.Nombre</td>
+    <td>@item.Genero</td>
+    <td><a asp-action="AddOrEdit" asp-route-id="@item.Identi">Editar</a> |
+    <a asp-action="Delete" asp-route-id="@item.Identi" 
+           onclick="return confirm('Estas seguro que deseas eliminar?')">Eliminar</a></td>
+</tr>
+    }
+</table>
